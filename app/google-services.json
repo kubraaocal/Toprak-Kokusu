@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "883240828674",
+    "project_id": "toprakkokusu-c3451",
+    "storage_bucket": "toprakkokusu-c3451.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883240828674:android:91abdd72665370481e0c1b",
+        "android_client_info": {
+          "package_name": "com.example.toprakkokusu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883240828674-5ueeu20f4hljspp3qmiu65vg2fsu9gv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABbRexbGJTY_u0WAAuASeXoh8OvZIbjQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883240828674-5ueeu20f4hljspp3qmiu65vg2fsu9gv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

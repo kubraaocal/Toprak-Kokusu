@@ -6,11 +6,28 @@
     android:layout_height="match_parent">
 
     <EditText
+        android:id="@+id/editTextNameSurname"
+        android:layout_width="375dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/teal_700"
+        android:ems="10"
+        android:hint="İsim Soyisim"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="375dp"
         android:layout_height="45dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="@color/teal_700"
         android:ems="10"
@@ -20,7 +37,7 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameSurname" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -39,36 +56,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-    <TextView
-        android:id="@+id/textPassForget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Şifremi Unuttum"
-        android:textColor="@color/teal_700"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonSingIn"
         android:layout_width="375dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/button_border"
         android:backgroundTint="@color/teal_700"
-        android:text="Giriş Yap"
+        android:text="Kayıt Ol"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18dp"
-        android:background="@drawable/button_border"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPassForget" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonFacebook"
@@ -85,7 +88,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSingIn" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonGoogle"
@@ -109,8 +112,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="76dp"
-        android:text="Hesabınız yok mu? Üye Olun"
+        android:layout_marginTop="48dp"
+        android:text="Kayıtlı iseniz Giriş Yapın"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />
