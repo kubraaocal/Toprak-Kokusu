@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/a.xml" value="0.2595" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/button_border.xml" value="0.16" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/progress_background.xml" value="0.1475" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/text_bottom_border.xml" value="0.1825" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_singin.xml" value="0.2" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/progress_background.xml" value="0.12360688956433637" />
       </map>
     </option>
   </component>
