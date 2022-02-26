@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout relativeLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -97,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     finish();
                 }else{
-                    Toast.makeText(LoginActivity.this,"Kullanıcı kayıt edilemedi",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,"Giriş yapılamadı",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                     relativeLayout.setVisibility(View.GONE);
                 }

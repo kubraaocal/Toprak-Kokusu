@@ -71,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String nameSurname=editTextNameSurname.getText().toString().trim();
         String email=editTextEmail.getText().toString().trim();
         String pass=editTextPass.getText().toString().trim();
+        String photo = "null";
         //trim metodu, metnin sonunda ve başında yer alan boşlukları yok ederken kelime aralarındaki boşluklara dokunmaz
 
         if(nameSurname.isEmpty()){
@@ -105,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isComplete()){
-                    UserModel user= new UserModel(nameSurname,email);
+                    UserModel user= new UserModel(nameSurname,email,photo);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -115,6 +116,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.makeText(RegisterActivity.this,"Kullanıcı kayıt edildi",Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
                                 relativeLayout.setVisibility(View.GONE);
+                                editTextNameSurname.setText("");
+                                editTextEmail.setText("");
+                                editTextPass.setText("");
+
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Kullanıcı kayıt edilemedi",Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
