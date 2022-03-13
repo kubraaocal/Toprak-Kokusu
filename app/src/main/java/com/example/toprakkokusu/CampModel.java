@@ -26,6 +26,15 @@ public class CampModel {
         this.wood = wood;
     }
 
+    public CampModel(String campName, String explanation, Boolean wc, Boolean paid, Boolean transport, Boolean facility) {
+        this.campName = campName;
+        this.explanation = explanation;
+        this.wc = wc;
+        this.paid = paid;
+        this.transport = transport;
+        this.facility = facility;
+    }
+
     public String getCampName() {
         return campName;
     }
