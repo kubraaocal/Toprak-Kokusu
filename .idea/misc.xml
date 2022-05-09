@@ -3,8 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/a.xml" value="0.2595" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/button_border.xml" value="0.16" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/edit_text_border.xml" value="0.2595" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_emoji_transportation_default.xml" value="0.1995" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_emoji_transportation_true.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_home_default.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_home_true.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_payments_default.xml" value="0.1335" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_payments_true.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_wc_24.xml" value="0.1995" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_wc_default.xml" value="0.1905" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1335" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1335" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_launcher_wc_true.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button.xml" value="0.1335" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_home.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_pay.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_transport.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_wc.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/progress_background.xml" value="0.1475" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/text_bottom_border.xml" value="0.1825" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_create.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_singin.xml" value="0.2" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/progress_background.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.124" />
       </map>
     </option>
   </component>
