@@ -15,13 +15,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="Alan Ekle"
                 android:textSize="16dp"
@@ -34,7 +34,6 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:text="Eklemek istediğiniz alan bilgilerini lütfen giriniz"
                 android:textSize="16dp"
@@ -45,13 +44,12 @@
                 android:id="@+id/editTextCampName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:text="Name"
+                android:hint="Kamp yeri adı"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -59,14 +57,13 @@
                 android:id="@+id/editTextCampExplanation"
                 android:layout_width="355dp"
                 android:layout_height="126dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:gravity="top|left"
                 android:inputType="textMultiLine"
                 android:padding="10dp"
-                android:text="Açıklama"
+                android:hint="Kamp yeri açıklama"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextCampName" />
 
@@ -74,8 +71,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="15dp"
                 android:text="Alan özelliklerini aşağıdan seçenilirsiniz."
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextCampExplanation" />
@@ -126,13 +122,22 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/image_button_home"
-                    app:layout_constraintStart_toEndOf="@+id/transport"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    />
+                    app:layout_constraintStart_toEndOf="@+id/transport"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <fragment
+                android:id="@+id/mapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                tools:ignore="MissingConstraints" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -158,6 +163,5 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
