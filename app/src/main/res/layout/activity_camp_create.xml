@@ -128,15 +128,29 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <fragment
-                android:id="@+id/mapFragment"
+            <TextView
+                android:id="@+id/mapFragmentOpen"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_height="wrap_content"
+                android:text="Lokasyon Ekle"
+                android:textStyle="bold"
+                android:drawableLeft="@drawable/ic_baseline_location"
+                android:drawablePadding="2dp"
+                android:clickable="true"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
+
+            <TextView
+                android:id="@+id/textAddress"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="Adres"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mapFragmentOpen" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,5 +177,11 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayoutMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,120 +2,91 @@ package com.example.toprakkokusu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
+
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CampCreateActivity extends AppCompatActivity implements View.OnClickListener{
-
-    SupportMapFragment supportMapFragment;
-    FusedLocationProviderClient client;
+public class CampCreateActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     private DatabaseReference cDbRef;
 
-    private ImageButton wc,paid,transport,facility;
+    private ImageButton wc, paid, transport, facility;
     private Button btnSave;
-    private EditText editTextExplanation,editTextCampName;
-
+    private EditText editTextExplanation, editTextCampName;
+    private TextView textMapButton,textAddress;
+    private AddressModel addressModel=AddressModel.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camp_create);
 
-        supportMapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+        mAuth = FirebaseAuth.getInstance();
+        cDbRef = FirebaseDatabase.getInstance().getReference().child("Camp");
 
-        client= LocationServices.getFusedLocationProviderClient(this);
+        editTextExplanation = findViewById(R.id.editTextCampExplanation);
+        editTextCampName = findViewById(R.id.editTextCampName);
+        textMapButton=findViewById(R.id.mapFragmentOpen);
+        textAddress=findViewById(R.id.textAddress);
+        textMapButton.setOnClickListener(this);
 
-        mAuth=FirebaseAuth.getInstance();
-        cDbRef= FirebaseDatabase.getInstance().getReference().child("Camp");
-
-        editTextExplanation=findViewById(R.id.editTextCampExplanation);
-        editTextCampName=findViewById(R.id.editTextCampName);
-
-        wc=findViewById(R.id.wc);
+        wc = findViewById(R.id.wc);
         wc.setOnClickListener(this);
-        paid=findViewById(R.id.paid);
+        paid = findViewById(R.id.paid);
         paid.setOnClickListener(this);
-        transport=findViewById(R.id.transport);
+        transport = findViewById(R.id.transport);
         transport.setOnClickListener(this);
-        facility=findViewById(R.id.facility);
+        facility = findViewById(R.id.facility);
         facility.setOnClickListener(this);
 
-        btnSave=findViewById(R.id.btnSave);
+        btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
 
-        if(ActivityCompat.checkSelfPermission(CampCreateActivity.this,
-                Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            getCurrentLocation();
-        }else{
-            ActivityCompat.requestPermissions(CampCreateActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},44);
-        }
-    }
 
-    private void getCurrentLocation() {
-        Task<Location> task= client.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if(location!=null){
-                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-                        @Override
-                        public void onMapReady(@NonNull GoogleMap googleMap) {
-                            LatLng latLng =new LatLng(location.getLatitude(),location.getLongitude());
-                            MarkerOptions options=new MarkerOptions().position(latLng)
-                                    .title("Konumum");
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
-                            googleMap.addMarker(options);
-                        }
-                    });
-                }
-            }
-        });
+
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 44) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getCurrentLocation();
-            }
-            else{
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
+    protected void onStart() {
+        super.onStart();
+        if(addressModel.getData()!=null){
+            Log.e("LOG","adres: "+addressModel.getData());
+            textAddress.setText(addressModel.getData());
         }
+        /*Intent intent=getIntent();
+        String a=intent.getStringExtra("addresses");
+        Log.e("LOG","a: "+a);
+        Bundle addresses = getIntent().getExtras();
+        if (addresses != null)
+        {
+            String address = addresses.getString("addresses");
+            Log.e("LOG","adres: "+address);
+            System.out.println("adres: "+address);
 
+        }*/
+        else if (addressModel.getData() == null)
+        {
+            Toast.makeText(this, "Bundle is null", Toast.LENGTH_SHORT).show();
+            System.out.println("adres: "+addressModel.getData());
+        }
     }
 
     @Override
@@ -153,9 +124,14 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
                 createCamp();
                 this.finish();
                 break;
+            case R.id.mapFragmentOpen:
+                startActivity(new Intent(this, MapFragment.class));
 
         }
     }
+
+
+
 
     private void createCamp() {
         String explanation=editTextExplanation.getText().toString().trim();

@@ -16,10 +16,13 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAUgH_-4mwiHzJ1fUaBz-inLhuyNvFj7qQ" />
+            android:value="@string/map_api_key" />
 
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MapFragment"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
