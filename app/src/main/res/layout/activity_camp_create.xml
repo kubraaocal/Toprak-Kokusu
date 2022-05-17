@@ -22,19 +22,18 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="Alan Ekle"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text="Eklemek istediğiniz alan bilgilerini lütfen giriniz"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +43,7 @@
                 android:id="@+id/editTextCampName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -57,7 +56,7 @@
                 android:id="@+id/editTextCampExplanation"
                 android:layout_width="355dp"
                 android:layout_height="126dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:gravity="top|left"
@@ -78,9 +77,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,35 +120,157 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/image_button_home"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/pets"
                     app:layout_constraintStart_toEndOf="@+id/transport"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageButton
+                    android:id="@+id/pets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/image_button_pets"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/facility"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/beach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/image_button_beach"
+                    app:layout_constraintEnd_toStartOf="@+id/parking"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/wc" />
+
+                <ImageButton
+                    android:id="@+id/parking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="44dp"
+                    android:background="@drawable/image_button_parking"
+                    app:layout_constraintStart_toEndOf="@+id/beach"
+                    app:layout_constraintEnd_toStartOf="@+id/walk"
+                    app:layout_constraintTop_toBottomOf="@+id/paid" />
+
+                <ImageButton
+                android:id="@+id/walk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/image_button_walk"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/parking"
+                    app:layout_constraintEnd_toStartOf="@+id/drink"
+                    app:layout_constraintTop_toBottomOf="@+id/transport" />
+
+                <ImageButton
+                    android:id="@+id/drink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/image_button_drink"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/wifi"
+                    app:layout_constraintStart_toEndOf="@+id/walk"
+                    app:layout_constraintTop_toBottomOf="@+id/facility" />
+
+                <ImageButton
+                    android:id="@+id/wifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/image_button_wifi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/drink"
+                    app:layout_constraintTop_toBottomOf="@+id/pets" />
+
+                <ImageButton
+                    android:id="@+id/fire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/image_button_fire"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/beach" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/mapFragmentOpen"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lokasyon Ekle"
-                android:textStyle="bold"
-                android:drawableLeft="@drawable/ic_baseline_location"
-                android:drawablePadding="2dp"
-                android:clickable="true"
-                android:textSize="20dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/textAddress"
-                android:layout_width="350dp"
+                <TextView
+                    android:id="@+id/mapFragmentOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_location"
+                    android:drawablePadding="2dp"
+                    android:text="Lokasyon Ekle"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/textAddress"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:text="Adres"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mapFragmentOpen" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:text="Adres"
-                android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mapFragmentOpen" />
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="15dp">
+
+                <TextView
+                    android:id="@+id/textSelectPhotoButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_photo_camera_24"
+                    android:drawablePadding="2dp"
+                    android:text="Fotoğraf Ekle"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="28dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbars="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/textSelectPhotoButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -178,10 +298,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayoutMap"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

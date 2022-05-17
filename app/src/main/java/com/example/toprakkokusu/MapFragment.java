@@ -68,21 +68,26 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQURST_CODE);
+            onBackPressed();
             return;
         }
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if(location!=null){
-                    currentLocation=location;
-                    SupportMapFragment supportMapFragment=(SupportMapFragment)
-                            getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-                    supportMapFragment.getMapAsync(MapFragment.this);
+        else{
+            Task<Location> task = fusedLocationProviderClient.getLastLocation();
+            task.addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if(location!=null){
+                        currentLocation=location;
+                        SupportMapFragment supportMapFragment=(SupportMapFragment)
+                                getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+                        supportMapFragment.getMapAsync(MapFragment.this);
 
+                    }
                 }
-            }
-        });
+            });
+        }
+
+
     }
 
         @Override
@@ -107,7 +112,7 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                MarkerOptions markerOptions=new MarkerOptions().position(latLng).title(latLng.latitude+" : "+latLng.longitude);
+                MarkerOptions markerOptions=new MarkerOptions().position(latLng).title(addressModel.getData());
                 coordinateToAddress(latLng);
                 googleMap.clear();
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
@@ -126,6 +131,8 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
             String postalCode = addresses.get(0).getPostalCode();
             String knownName = addresses.get(0).getFeatureName();
             addressModel.setData(addresses.get(0).getAddressLine(0));
+            addressModel.setLatitude(String.valueOf(latLng.latitude));
+            addressModel.setLongitude(String.valueOf(latLng.longitude));
         } catch (IOException e) {
             e.printStackTrace();
         }

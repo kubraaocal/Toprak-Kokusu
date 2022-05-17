@@ -1,16 +1,17 @@
 package com.example.toprakkokusu;
 
-public class CampModel {
-    private String campName, explanation, location,photo,comment;
-    private Boolean wc,paid,transport,facility,park,water, wildAnimal,sea,fire,network,trekking,wood;
+import java.util.ArrayList;
 
-    public CampModel(String campName, String explanation, String location, String photo, String comment,
+public class CampModel {
+    private String campName, explanation, location,comment,latitude,longitude;
+    private Boolean wc,paid,transport,facility,park,water,wildAnimal,sea,fire,network,trekking;
+
+    public CampModel(String campName, String explanation, String location, String comment,
                      Boolean wc, Boolean paid, Boolean transport, Boolean facility, Boolean park,
-                     Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking, Boolean wood) {
+                     Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking) {
         this.campName = campName;
         this.explanation = explanation;
         this.location = location;
-        this.photo = photo;
         this.comment = comment;
         this.wc = wc;
         this.paid = paid;
@@ -23,16 +24,30 @@ public class CampModel {
         this.fire = fire;
         this.network = network;
         this.trekking = trekking;
-        this.wood = wood;
     }
 
-    public CampModel(String campName, String explanation, Boolean wc, Boolean paid, Boolean transport, Boolean facility) {
+    public CampModel(String campName, String explanation, String location, String latitude,
+                     String longitude, Boolean wc, Boolean paid, Boolean transport, Boolean facility,
+                     Boolean park, Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking) {
         this.campName = campName;
         this.explanation = explanation;
+        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.wc = wc;
         this.paid = paid;
         this.transport = transport;
         this.facility = facility;
+        this.park = park;
+        this.water = water;
+        this.wildAnimal = wildAnimal;
+        this.sea = sea;
+        this.fire = fire;
+        this.network = network;
+        this.trekking = trekking;
+    }
+
+    public CampModel() {
     }
 
     public String getCampName() {
@@ -57,14 +72,6 @@ public class CampModel {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public String getComment() {
@@ -163,11 +170,19 @@ public class CampModel {
         this.trekking = trekking;
     }
 
-    public Boolean getWood() {
-        return wood;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setWood(Boolean wood) {
-        this.wood = wood;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }
