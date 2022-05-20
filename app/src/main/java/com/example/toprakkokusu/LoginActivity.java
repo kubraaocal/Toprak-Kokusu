@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.textSingIn:
                 startActivity(new Intent(this, RegisterActivity.class));
-                Log.e("Kayıt buton", "onClick: " );
+                finish();
                 break;
             case R.id.buttonLogin:
                 loginUser();

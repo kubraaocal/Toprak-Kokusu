@@ -3,12 +3,12 @@ package com.example.toprakkokusu;
 import java.util.ArrayList;
 
 public class CampModel {
-    private String campName, explanation, location,comment,latitude,longitude;
+    private String campName, explanation, location,comment,latitude,longitude,photo,userId;
     private Boolean wc,paid,transport,facility,park,water,wildAnimal,sea,fire,network,trekking;
 
     public CampModel(String campName, String explanation, String location, String comment,
                      Boolean wc, Boolean paid, Boolean transport, Boolean facility, Boolean park,
-                     Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking) {
+                     Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking,String photo) {
         this.campName = campName;
         this.explanation = explanation;
         this.location = location;
@@ -24,11 +24,12 @@ public class CampModel {
         this.fire = fire;
         this.network = network;
         this.trekking = trekking;
+        this.photo=photo;
     }
 
     public CampModel(String campName, String explanation, String location, String latitude,
                      String longitude, Boolean wc, Boolean paid, Boolean transport, Boolean facility,
-                     Boolean park, Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking) {
+                     Boolean park, Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking,String photo,String userId) {
         this.campName = campName;
         this.explanation = explanation;
         this.location = location;
@@ -45,6 +46,8 @@ public class CampModel {
         this.fire = fire;
         this.network = network;
         this.trekking = trekking;
+        this.photo=photo;
+        this.userId=userId;
     }
 
     public CampModel() {
@@ -184,5 +187,21 @@ public class CampModel {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

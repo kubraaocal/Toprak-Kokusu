@@ -3,8 +3,13 @@ package com.example.toprakkokusu;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -19,21 +24,46 @@ import com.smarteist.autoimageslider.SliderView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CampDetailActivity extends AppCompatActivity {
+public class CampDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     SliderView sliderView;
+    String longitude,latitude;
     int[] images={R.drawable.logo,R.drawable.logo};
+
+    private TextView txtCampName,txtCampExplation,txtCampLocation;
+    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk;
+
 
     private FirebaseAuth mAuth;
     private DatabaseReference mCampReference,mCampPhotoReference;
     List listCamp=new ArrayList<>();
     ArrayList<String> photoModel=new ArrayList<>();
 
+    ArrayList<CampModel> campModel = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camp_detail);
+
+        txtCampName=findViewById(R.id.txtCampName);
+        txtCampExplation=findViewById(R.id.txtCampExplation);
+        txtCampLocation=findViewById(R.id.txtCampLocation);
+
+        txtCampLocation.setOnClickListener(this);
+
+        wc = findViewById(R.id.wc);
+        paid = findViewById(R.id.paid);
+        transport = findViewById(R.id.transport);
+        facility = findViewById(R.id.facility);
+        park=findViewById(R.id.parking);
+        pet=findViewById(R.id.pets);
+        drink=findViewById(R.id.drink);
+        fire=findViewById(R.id.fire);
+        beach=findViewById(R.id.beach);
+        walk=findViewById(R.id.walk);
+        wifi=findViewById(R.id.wifi);
 
         mAuth = FirebaseAuth.getInstance();
         mCampReference = FirebaseDatabase.getInstance().getReference().child("Camp");
@@ -54,9 +84,8 @@ public class CampDetailActivity extends AppCompatActivity {
         ValueEventListener campListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<CampModel> campModel= new ArrayList<>();
-                campModel.add(snapshot.child("-N26LfvgfD_m2yZ1D1G7").getValue(CampModel.class));
-                //Log.e("Log",campModel.get(0).getCampName());
+                campModel.add(snapshot.child("-N2H5IaGcAkIEj2Ay_RI").getValue(CampModel.class));
+                setDatainTextView();
             }
 
             @Override
@@ -65,7 +94,8 @@ public class CampDetailActivity extends AppCompatActivity {
             }
         };
 
-        ValueEventListener photosListener=new ValueEventListener() {
+
+        /*ValueEventListener photosListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e("TAG",snapshot.child("-N26LfvgfD_m2yZ1D1G7").getValue().toString());
@@ -80,10 +110,63 @@ public class CampDetailActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("TAG", "loadPost:onCancelled", error.toException());
             }
-        };
+        };*/
 
         mCampReference.addValueEventListener(campListener);
-        mCampPhotoReference.addValueEventListener(photosListener);
+        //mCampPhotoReference.addValueEventListener(photosListener);
 
+    }
+
+    void setDatainTextView(){
+        txtCampName.setText(campModel.get(0).getCampName());
+        txtCampExplation.setText(campModel.get(0).getExplanation());
+        if (campModel.get(0).getFire()==true){
+            fire.setBackgroundResource(R.drawable.ic_baseline_local_fire_department_true);
+        }
+        if(campModel.get(0).getWc()==true){
+            wc.setBackgroundResource(R.drawable.ic_launcher_wc_true);
+        }
+        if(campModel.get(0).getFacility()==true){
+            facility.setBackgroundResource(R.drawable.ic_baseline_facility_true);
+        }
+        if(campModel.get(0).getNetwork()==true){
+            wifi.setBackgroundResource(R.drawable.ic_baseline_wifi_true);
+        }
+        if(campModel.get(0).getPaid()==true){
+            paid.setBackgroundResource(R.drawable.ic_baseline_payments_true);
+        }
+        if(campModel.get(0).getSea()==true){
+            beach.setBackgroundResource(R.drawable.ic_baseline_beach_access_true);
+        }
+        if(campModel.get(0).getPark()==true){
+            park.setBackgroundResource(R.drawable.ic_baseline_local_parking_true);
+        }
+        if(campModel.get(0).getTransport()==true){
+            transport.setBackgroundResource(R.drawable.ic_baseline_emoji_transportation_true);
+        }
+        if(campModel.get(0).getTrekking()==true){
+            walk.setBackgroundResource(R.drawable.ic_baseline_directions_walk_true);
+        }
+        if(campModel.get(0).getWater()==true){
+            drink.setBackgroundResource(R.drawable.ic_baseline_local_drink_true);
+        }
+        if(campModel.get(0).getWildAnimal()==true){
+            pet.setBackgroundResource(R.drawable.ic_baseline_pets_true);
+        }
+        txtCampLocation.setText(campModel.get(0).getLocation());
+        longitude=campModel.get(0).getLongitude();
+        latitude=campModel.get(0).getLatitude();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.txtCampLocation:
+                Intent intent=new Intent(this,CampLocationMapFragment.class);
+                intent.putExtra("longitude",longitude);
+                intent.putExtra("latitude",latitude);
+                startActivity(intent);
+                break;
+        }
     }
 }

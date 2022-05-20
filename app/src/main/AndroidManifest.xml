@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToprakKokusu">
+
         <activity
             android:name=".CampDetailActivity"
             android:exported="false" />
@@ -28,6 +29,9 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".CampCreateActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MapFragment"
             android:exported="false" />
         <activity
@@ -37,7 +41,10 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".CampCreateActivity"
+            android:name=".CampLocationMapFragment"
+            android:exported="true" />
+        <activity
+            android:name=".BottomNavigationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

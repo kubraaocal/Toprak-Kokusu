@@ -1,24 +1,7 @@
-package com.example.toprakkokusu;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+package com.example.toprakkokusu.ui.create;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,33 +9,46 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.toprakkokusu.AddressModel;
+import com.example.toprakkokusu.CampModel;
+import com.example.toprakkokusu.LoginActivity;
+import com.example.toprakkokusu.MapFragment;
+import com.example.toprakkokusu.MediaRecyclerAdapter;
+import com.example.toprakkokusu.R;
+import com.example.toprakkokusu.databinding.FragmentCreateCampBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CampCreateActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateFragment extends Fragment implements View.OnClickListener {
 
-    private FirebaseAuth mAuth;
+
     private DatabaseReference cDbRef,imageDbRef;
     private MediaRecyclerAdapter recyclerAdapter;
     ArrayList<Uri> uris=new ArrayList<>();
@@ -68,70 +64,81 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
     private RecyclerView recyclerViewMedia;
     private AddressModel addressModel=AddressModel.getInstance();
 
+    private FragmentCreateCampBinding binding;
 
-    public CampCreateActivity() {
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        CreateViewModel createViewModel =
+                new ViewModelProvider(this).get(CreateViewModel.class);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camp_create);
+        binding = FragmentCreateCampBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-        mAuth = FirebaseAuth.getInstance();
+        //final TextView textView = binding.textDashboard;
+        //createViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+
+
         cDbRef = FirebaseDatabase.getInstance().getReference().child("Camp");
         imageDbRef=FirebaseDatabase.getInstance().getReference().child("Photo");
 
         imageRef = FirebaseStorage.getInstance().getReference().child("images/");
 
-        editTextExplanation = findViewById(R.id.editTextCampExplanation);
-        editTextCampName = findViewById(R.id.editTextCampName);
-        textMapButton=findViewById(R.id.mapFragmentOpen);
-        textAddress=findViewById(R.id.textAddress);
+        editTextExplanation = binding.editTextCampExplanation;
+        editTextCampName = binding.editTextCampName;
+        textMapButton=binding.mapFragmentOpen;
+        textAddress=binding.textAddress;
         textMapButton.setOnClickListener(this);
-        textSelectPhotoButton=findViewById(R.id.textSelectPhotoButton);
-        recyclerViewMedia=findViewById(R.id.recyclerView);
+        textSelectPhotoButton=binding.textSelectPhotoButton;
+        recyclerViewMedia=binding.recyclerView;
 
-        wc = findViewById(R.id.wc);
+        wc = binding.wc;
         wc.setOnClickListener(this);
-        paid = findViewById(R.id.paid);
+        paid = binding.paid;
         paid.setOnClickListener(this);
-        transport = findViewById(R.id.transport);
+        transport = binding.transport;
         transport.setOnClickListener(this);
-        facility = findViewById(R.id.facility);
+        facility = binding.facility;
         facility.setOnClickListener(this);
-        park=findViewById(R.id.parking);
+        park=binding.parking;
         park.setOnClickListener(this);
-        pet=findViewById(R.id.pets);
+        pet=binding.pets;
         pet.setOnClickListener(this);
-        drink=findViewById(R.id.drink);
+        drink=binding.drink;
         drink.setOnClickListener(this);
-        fire=findViewById(R.id.fire);
+        fire=binding.fire;
         fire.setOnClickListener(this);
-        beach=findViewById(R.id.beach);
+        beach=binding.beach;
         beach.setOnClickListener(this);
-        walk=findViewById(R.id.walk);
+        walk=binding.walk;
         walk.setOnClickListener(this);
-        wifi=findViewById(R.id.wifi);
+        wifi=binding.wifi;
         wifi.setOnClickListener(this);
 
 
-        btnSave = findViewById(R.id.btnSave);
+        btnSave = binding.btnSave;
         btnSave.setOnClickListener(this);
 
         textSelectPhotoButton.setOnClickListener(this);
 
         recyclerAdapter=new MediaRecyclerAdapter(uris);
-        recyclerViewMedia.setLayoutManager(new GridLayoutManager(CampCreateActivity.this,4));
+        recyclerViewMedia.setLayoutManager(new GridLayoutManager(getContext(),4));
         recyclerViewMedia.setAdapter(recyclerAdapter);
 
-        if(ContextCompat.checkSelfPermission(CampCreateActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(CampCreateActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},Read_Permission);
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},Read_Permission);
         }
+        return root;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         if(addressModel.getData()!=null){
             Log.e("LOG","adres: "+addressModel.getData());
@@ -141,6 +148,7 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
             Log.e("LOG","address null");
         }
     }
+
 
     @Override
     public void onClick(View view) {
@@ -226,7 +234,7 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
                 createCamp();
                 break;
             case R.id.mapFragmentOpen:
-                startActivity(new Intent(this, MapFragment.class));
+                startActivity(new Intent(getContext(), MapFragment.class));
                 break;
             case R.id.textSelectPhotoButton:
                 Intent intent=new Intent();
@@ -241,10 +249,11 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1&& resultCode== Activity.RESULT_OK){
             if(data.getData()!=null){
+                recyclerViewMedia.setVisibility(View.VISIBLE);
                 ClipData cd = data.getClipData();
                 if ( cd == null ) {
                     Uri uri = data.getData();
@@ -301,7 +310,7 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
 
         String uploadImageId=imageDbRef.push().getKey();
 
-        for(int i=0;i<uris.size();i++){
+        /*for(int i=0;i<uris.size();i++){
 
 
             imageRef.child(String.valueOf(Math.random())).putFile(uris.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -335,21 +344,21 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
                         }
                     });
                 }
-            });*/
-        }
+            });
+        }*/
 
-        /*CampModel campModel=new CampModel(name,explanation,location,latitude,longitude,isWc,isPaid,isTransport,isFacility,
-                isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId);
+        CampModel campModel=new CampModel(name,explanation,location,latitude,longitude,isWc,isPaid,isTransport,isFacility,
+                isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId,"sdf");
         String uploadId=cDbRef.push().getKey();
         cDbRef.child(uploadId).setValue(campModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isComplete()){
-                    Toast.makeText(CampCreateActivity.this,"Kamp yeri kayıt edildi",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Kamp yeri kayıt edildi",Toast.LENGTH_LONG).show();
 
                 }
                 else{
-                    Toast.makeText(CampCreateActivity.this,"Kamp yeri kayıt edilemedi",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Kamp yeri kayıt edilemedi",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -357,11 +366,9 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
         imageDbRef.child(uploadImageId).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(CampCreateActivity.this,"Burası kayıt edildi",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Burası kayıt edildi",Toast.LENGTH_SHORT).show();
 
             }
-        });*/
-
-
+        });
     }
 }

@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/a.xml" value="0.2595" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/button_border.xml" value="0.16" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/circle_button_background.xml" value="0.1955" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/edit_text_border.xml" value="0.2595" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_beach_access.xml" value="0.1975" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_beach_access_true.xml" value="0.1975" />
@@ -32,9 +33,12 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_wc_default.xml" value="0.1905" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_wifi.xml" value="0.1975" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_baseline_wifi_true.xml" value="0.1975" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1955" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1955" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1335" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1335" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_launcher_wc_true.xml" value="0.116" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1955" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button.xml" value="0.1335" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_beach.xml" value="0.1975" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_drink.xml" value="0.1975" />
@@ -48,7 +52,10 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_wc.xml" value="0.116" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/image_button_wifi.xml" value="0.1975" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/progress_background.xml" value="0.1475" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/shape_button.xml" value="0.1955" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/text_bottom_border.xml" value="0.1825" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/transparent_background.xml" value="0.1955" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.5264293419633226" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_create.xml" value="0.264" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -57,9 +64,14 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/blank_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/custom_single_image.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_blank.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_create_camp.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_dashboard.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_map.xml" value="0.2" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_notifications.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/progress_background.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/slider_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.124" />
       </map>

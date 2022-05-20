@@ -86,8 +86,6 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
                 }
             });
         }
-
-
     }
 
         @Override

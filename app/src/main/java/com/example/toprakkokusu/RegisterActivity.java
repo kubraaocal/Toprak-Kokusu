@@ -1,5 +1,6 @@
 package com.example.toprakkokusu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -57,12 +58,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 registerUser();
                 break;
             case R.id.textLogin:
-                ///startActivity(new Intent(this,LoginActivity.class));
-
-                //Burası doğru mu bilmiyorum amacım var olan activity arkada kapatmak önceki activity geri dönmek
-
-                onBackPressed();
-                this.finish();
+                startActivity(new Intent(this,LoginActivity.class));
+                //onBackPressed();
+                finish();
                 break;
         }
     }
@@ -119,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 editTextNameSurname.setText("");
                                 editTextEmail.setText("");
                                 editTextPass.setText("");
+                                startActivity(new Intent(RegisterActivity.this,BottomNavigationActivity.class));
 
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Kullanıcı kayıt edilemedi",Toast.LENGTH_LONG).show();

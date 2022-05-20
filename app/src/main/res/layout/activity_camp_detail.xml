@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CampDetailActivity">
+    tools:context=".CampDetailActivity"
+    android:padding="10dp">
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/image_slider"
@@ -24,6 +25,179 @@
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="2"
         app:sliderStartAutoCycle="true"/>
+
+    <TextView
+        android:id="@+id/txtCampName"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_slider" />
+
+    <TextView
+        android:id="@+id/txtCampExplation"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCampName" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCampExplation">
+
+        <ImageButton
+            android:id="@+id/wc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_wc_default"
+            app:layout_constraintEnd_toStartOf="@+id/paid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/paid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_payments_default"
+            app:layout_constraintEnd_toStartOf="@+id/transport"
+            app:layout_constraintStart_toEndOf="@+id/wc"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/transport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_emoji_transportation_default"
+            app:layout_constraintEnd_toStartOf="@+id/facility"
+            app:layout_constraintStart_toEndOf="@+id/paid"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/facility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_facility_default"
+            app:layout_constraintEnd_toStartOf="@+id/pets"
+            app:layout_constraintStart_toEndOf="@+id/transport"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/pets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_pets"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/facility"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/beach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_beach_access"
+            app:layout_constraintEnd_toStartOf="@+id/parking"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wc"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/parking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="44dp"
+            android:background="@drawable/ic_baseline_local_parking"
+            app:layout_constraintEnd_toStartOf="@+id/walk"
+            app:layout_constraintStart_toEndOf="@+id/beach"
+            app:layout_constraintTop_toBottomOf="@+id/paid"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/walk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_directions_walk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/drink"
+            app:layout_constraintStart_toEndOf="@+id/parking"
+            app:layout_constraintTop_toBottomOf="@+id/transport"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_local_drink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/wifi"
+            app:layout_constraintStart_toEndOf="@+id/walk"
+            app:layout_constraintTop_toBottomOf="@+id/facility"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_baseline_wifi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/drink"
+            app:layout_constraintTop_toBottomOf="@+id/pets"
+            android:clickable="false"/>
+
+        <ImageButton
+            android:id="@+id/fire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_local_fire_department"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beach"
+            android:clickable="false"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+
+        android:id="@+id/txtCampLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_baseline_location"
+        android:drawablePadding="2dp"
+        android:text="Lokasyon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+
+
 
 
 
