@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +37,15 @@ import com.example.toprakkokusu.MediaRecyclerAdapter;
 import com.example.toprakkokusu.R;
 import com.example.toprakkokusu.databinding.FragmentCreateCampBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +58,15 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
     private MediaRecyclerAdapter recyclerAdapter;
     ArrayList<Uri> uris=new ArrayList<>();
 
+    private FirebaseAuth mAuth;
+
+
     StorageReference imageRef;
+
+    int j=0;
+    Map<String,String> map=new HashMap<>();
+
+
 
     private static final int Read_Permission=101;
 
@@ -65,6 +78,9 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
     private AddressModel addressModel=AddressModel.getInstance();
 
     private FragmentCreateCampBinding binding;
+
+    RelativeLayout relativeLayout;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,6 +99,11 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
         imageDbRef=FirebaseDatabase.getInstance().getReference().child("Photo");
 
         imageRef = FirebaseStorage.getInstance().getReference().child("images/");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        relativeLayout=binding.relativeLayout;
+        progressBar=binding.progressBar;
 
         editTextExplanation = binding.editTextCampExplanation;
         editTextCampName = binding.editTextCampName;
@@ -253,32 +274,55 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1&& resultCode== Activity.RESULT_OK){
             if(data.getData()!=null){
-                recyclerViewMedia.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+                relativeLayout.setVisibility(View.VISIBLE);
                 ClipData cd = data.getClipData();
                 if ( cd == null ) {
                     Uri uri = data.getData();
                     uris.add(uri);
+                    saveStorageImage(uri);
                 }
                 else {
                     for (int i = 0; i < cd.getItemCount(); i++) {
                         ClipData.Item item = cd.getItemAt(i);
                         Uri uri = item.getUri();
                         uris.add(uri);
+                        saveStorageImage(uri);
                     }
                 }
                 recyclerAdapter.notifyDataSetChanged();
             }else if(data.getData()!=null){
+                progressBar.setVisibility(View.VISIBLE);
+                relativeLayout.setVisibility(View.VISIBLE);
                 String imageURL=data.getData().getPath();
                 uris.add(Uri.parse(imageURL));
+                saveStorageImage(Uri.parse(imageURL));
             }
         }
     }
 
-    int j=0;
-    Map<String,Object> map=new HashMap<>();
+    private void saveStorageImage(Uri uri) {
+        Log.e("ABCC","girdi");
+        imageRef.child(uri.getLastPathSegment()).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                map.put("photo"+uri.getLastPathSegment(),imageRef.getDownloadUrl().toString());
+                //burada çekme durumuna bağlı olarak sadece resmin adı yazdırılabilir.
+                recyclerViewMedia.setVisibility(View.VISIBLE);
+                Log.e("ABCC","oldu");
+                progressBar.setVisibility(View.GONE);
+                relativeLayout.setVisibility(View.GONE);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("ABCC","elendik");
+            }
+        });
+    }
+
 
     private void createCamp() {
-
         String explanation=editTextExplanation.getText().toString().trim();
         String name=editTextCampName.getText().toString().trim();
         boolean isWc=wc.isSelected();
@@ -310,52 +354,14 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
 
         String uploadImageId=imageDbRef.push().getKey();
 
-        /*for(int i=0;i<uris.size();i++){
-
-
-            imageRef.child(String.valueOf(Math.random())).putFile(uris.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Log.e("TAG",uri.toString());
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.e("TAG","elendik");
-                        }
-                    });
-                }
-            });
-
-            /*imageRef.child(uris.get(i).getLastPathSegment()).putFile(uris.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String url = String.valueOf(uri);
-                            map.put("photo"+j,url.toString());
-                            Log.e("TAG","url "+url);
-                            Toast.makeText(CampCreateActivity.this,"Resim storageye kayıt edildi",Toast.LENGTH_SHORT).show();
-                            j++;
-                        }
-                    });
-                }
-            });
-        }*/
-
         CampModel campModel=new CampModel(name,explanation,location,latitude,longitude,isWc,isPaid,isTransport,isFacility,
-                isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId,"sdf");
+                isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId,mAuth.getUid());
         String uploadId=cDbRef.push().getKey();
         cDbRef.child(uploadId).setValue(campModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isComplete()){
                     Toast.makeText(getContext(),"Kamp yeri kayıt edildi",Toast.LENGTH_LONG).show();
-
                 }
                 else{
                     Toast.makeText(getContext(),"Kamp yeri kayıt edilemedi",Toast.LENGTH_LONG).show();
@@ -367,8 +373,9 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getContext(),"Burası kayıt edildi",Toast.LENGTH_SHORT).show();
-
             }
         });
+
+
     }
 }

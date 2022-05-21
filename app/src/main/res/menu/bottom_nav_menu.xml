@@ -10,8 +10,7 @@
         android:id="@+id/navigation_camp_create"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_camp_add" />
-
-
+    
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"

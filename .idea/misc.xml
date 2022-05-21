@@ -55,7 +55,7 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/shape_button.xml" value="0.1955" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/text_bottom_border.xml" value="0.1825" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/drawable/transparent_background.xml" value="0.1955" />
-        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.5264293419633226" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.264" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_create.xml" value="0.264" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -64,7 +64,7 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/blank_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/custom_single_image.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_blank.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_create_camp.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_create_camp.xml" value="0.2" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_map.xml" value="0.2" />
