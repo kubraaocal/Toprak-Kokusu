@@ -306,10 +306,20 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
         imageRef.child(uri.getLastPathSegment()).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                map.put("photo"+uri.getLastPathSegment(),imageRef.getDownloadUrl().toString());
+                taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uriUrl) {
+                        String url = String.valueOf(uriUrl);
+                        map.put("photo"+uri.getLastPathSegment(),url);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("ABCC","fail");
+                    }
+                });
                 //burada çekme durumuna bağlı olarak sadece resmin adı yazdırılabilir.
                 recyclerViewMedia.setVisibility(View.VISIBLE);
-                Log.e("ABCC","oldu");
                 progressBar.setVisibility(View.GONE);
                 relativeLayout.setVisibility(View.GONE);
             }
@@ -375,7 +385,5 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(),"Burası kayıt edildi",Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

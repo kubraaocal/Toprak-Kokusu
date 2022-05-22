@@ -18,7 +18,7 @@
         android:theme="@style/Theme.ToprakKokusu">
 
         <activity
-            android:name=".CampDetailActivity"
+            android:name=".BottomNavigationActivity"
             android:exported="false" />
 
         <meta-data
@@ -44,7 +44,7 @@
             android:name=".CampLocationMapFragment"
             android:exported="true" />
         <activity
-            android:name=".BottomNavigationActivity"
+            android:name=".CampDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

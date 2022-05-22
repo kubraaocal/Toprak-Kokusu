@@ -31,7 +31,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
     int[] images={R.drawable.logo,R.drawable.logo};
 
     private TextView txtCampName,txtCampExplation,txtCampLocation;
-    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk;
+    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk,favorite;
 
 
     private FirebaseAuth mAuth;
@@ -64,10 +64,12 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
         beach=findViewById(R.id.beach);
         walk=findViewById(R.id.walk);
         wifi=findViewById(R.id.wifi);
+        favorite=findViewById(R.id.favorite_button);
+        favorite.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mCampReference = FirebaseDatabase.getInstance().getReference().child("Camp");
-        mCampPhotoReference = mCampReference.child("photos");
+        mCampPhotoReference = FirebaseDatabase.getInstance().getReference().child("Photo");
 
 
 
@@ -94,27 +96,32 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
             }
         };
 
-
-        /*ValueEventListener photosListener=new ValueEventListener() {
+//string olarak veridiğim id değerleri tıklanan paylaşımın id sine göre olacak
+        ValueEventListener photosListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("TAG",snapshot.child("-N26LfvgfD_m2yZ1D1G7").getValue().toString());
-                for (DataSnapshot child:snapshot.child("-N26LfvgfD_m2yZ1D1G7").getChildren()) {
+                Log.e("TAG",snapshot.child("-N2fEG-gMRyBtOXyjyyi").getValue().toString());
+                for (DataSnapshot child:snapshot.child("-N2fEG-gMRyBtOXyjyyi").getChildren()) {
                     //Log.e("Log", child.toString());
                     photoModel.add(child.getValue().toString());
                     sliderAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("TAG", "loadPost:onCancelled", error.toException());
             }
-        };*/
+        };
 
         mCampReference.addValueEventListener(campListener);
-        //mCampPhotoReference.addValueEventListener(photosListener);
+        mCampPhotoReference.addValueEventListener(photosListener);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        photoModel.clear();
     }
 
     void setDatainTextView(){
@@ -167,6 +174,15 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
                 intent.putExtra("latitude",latitude);
                 startActivity(intent);
                 break;
+
+            case R.id.favorite_button:
+                if(favorite.isSelected()){
+                    favorite.setSelected(false);
+                }else{
+                    favorite.setSelected(true);
+                }
+                break;
+
         }
     }
 }

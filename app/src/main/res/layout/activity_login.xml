@@ -82,23 +82,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textPassForget" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonFacebook"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:textSize="15dp"
-        android:background="@drawable/button_border"
-        android:drawableLeft="@drawable/ic_launcher_wc_true"
-        android:text="Facebook ile devam et"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonGoogle"
         android:layout_width="350dp"
         android:layout_height="50dp"
@@ -113,7 +96,7 @@
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFacebook" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
 
     <TextView
