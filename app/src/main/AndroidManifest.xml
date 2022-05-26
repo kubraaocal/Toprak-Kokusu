@@ -17,13 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToprakKokusu">
 
-        <activity
-            android:name=".BottomNavigationActivity"
-            android:exported="false" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
+
+        <activity
+            android:name=".CampDetailActivity"
+            android:exported="false" />
 
         <activity
             android:name=".LoginActivity"
@@ -44,7 +44,7 @@
             android:name=".CampLocationMapFragment"
             android:exported="true" />
         <activity
-            android:name=".CampDetailActivity"
+            android:name=".BottomNavigationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

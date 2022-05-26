@@ -86,7 +86,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
         ValueEventListener campListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                campModel.add(snapshot.child("-N2H5IaGcAkIEj2Ay_RI").getValue(CampModel.class));
+                campModel.add(snapshot.child("-N3-m940IkBNOC-3kUl2").getValue(CampModel.class));
                 setDatainTextView();
             }
 
@@ -96,12 +96,12 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
             }
         };
 
-//string olarak veridiğim id değerleri tıklanan paylaşımın id sine göre olacak
+        //string olarak veridiğim id değerleri tıklanan paylaşımın id sine göre olacak
         ValueEventListener photosListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("TAG",snapshot.child("-N2fEG-gMRyBtOXyjyyi").getValue().toString());
-                for (DataSnapshot child:snapshot.child("-N2fEG-gMRyBtOXyjyyi").getChildren()) {
+                Log.e("TAG",snapshot.child("-N3-m94-IqOMmerC2JCs").getValue().toString());
+                for (DataSnapshot child:snapshot.child("-N3-m94-IqOMmerC2JCs").getChildren()) {
                     //Log.e("Log", child.toString());
                     photoModel.add(child.getValue().toString());
                     sliderAdapter.notifyDataSetChanged();

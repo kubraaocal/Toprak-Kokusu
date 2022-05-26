@@ -84,120 +84,275 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linear_layout_wc"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_paid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
                 <ImageButton
                     android:id="@+id/wc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:background="@drawable/image_button_wc"
-                    app:layout_constraintEnd_toStartOf="@+id/paid"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                     />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tuvalet"/>
+                </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/paid"
+                <LinearLayout
+                    android:id="@+id/linear_layout_paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/image_button_pay"
-                    app:layout_constraintEnd_toStartOf="@+id/transport"
-                    app:layout_constraintStart_toEndOf="@+id/wc"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_drink"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_wc"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
-                    android:id="@+id/transport"
+                    <ImageButton
+                        android:id="@+id/paid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_pay" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ücretli" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linear_layout_drink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/image_button_transport"
-                    app:layout_constraintEnd_toStartOf="@+id/facility"
-                    app:layout_constraintStart_toEndOf="@+id/paid"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/facility"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/image_button_home"
-                    app:layout_constraintEnd_toStartOf="@+id/pets"
-                    app:layout_constraintStart_toEndOf="@+id/transport"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/pets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/image_button_pets"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_paid"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/facility"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <ImageButton
+                        android:id="@+id/drink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_drink"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="İçme Suyu Kaynağı" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_beach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_park"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_wc">
                 <ImageButton
                     android:id="@+id/beach"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:background="@drawable/image_button_beach"
-                    app:layout_constraintEnd_toStartOf="@+id/parking"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wc" />
+                     />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deniz Plaj" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_park"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_beach"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_walk"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_paid">
 
                 <ImageButton
                     android:id="@+id/parking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginStart="44dp"
                     android:background="@drawable/image_button_parking"
-                    app:layout_constraintStart_toEndOf="@+id/beach"
-                    app:layout_constraintEnd_toStartOf="@+id/walk"
-                    app:layout_constraintTop_toBottomOf="@+id/paid" />
+                     />
 
-                <ImageButton
-                android:id="@+id/walk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/image_button_walk"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/parking"
-                    app:layout_constraintEnd_toStartOf="@+id/drink"
-                    app:layout_constraintTop_toBottomOf="@+id/transport" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Park Yeri" />
+                </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/drink"
+
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_walk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/image_button_drink"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/wifi"
-                    app:layout_constraintStart_toEndOf="@+id/walk"
-                    app:layout_constraintTop_toBottomOf="@+id/facility" />
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_park"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_drink">
 
-                <ImageButton
-                    android:id="@+id/wifi"
+                    <ImageButton
+                        android:id="@+id/walk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_walk" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yürüyüş Alanları" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_fire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/image_button_wifi"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/drink"
-                    app:layout_constraintTop_toBottomOf="@+id/pets" />
-
-                <ImageButton
-                    android:id="@+id/fire"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/image_button_fire"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/beach" />
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_park">
+
+                    <ImageButton
+                        android:id="@+id/fire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_fire" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ateş" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_transport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_fire"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_beach">
+
+                    <ImageButton
+                        android:id="@+id/transport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_transport" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ulaşım" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_facility"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_fire"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_walk">
+
+                    <ImageButton
+                        android:id="@+id/facility"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_home" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Konaklama" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_pets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_wifi"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_transport">
+
+                    <ImageButton
+                        android:id="@+id/pets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_pets" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vahşi Hayvan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_wifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_layout_shop"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_pets"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_fire">
+
+                    <ImageButton
+                        android:id="@+id/wifi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_wifi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sinyal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout_wifi"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_facility">
+
+                    <ImageButton
+                        android:id="@+id/shop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_button_shop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Market" />
+                </LinearLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -269,9 +424,6 @@
                     android:scrollbars="vertical"
                     app:layout_constraintTop_toBottomOf="@+id/textSelectPhotoButton" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

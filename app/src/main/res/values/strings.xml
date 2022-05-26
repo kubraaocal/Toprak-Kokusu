@@ -4,7 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Anasayfa</string>
+    <string name="title_activity">Etkinlik</string>
     <string name="title_camp_add">Paylaş</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Profil</string>
 </resources>

@@ -61,7 +61,7 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
 
     private static final int Read_Permission=101;
 
-    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk;
+    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk,shop;
     private Button btnSave;
     private EditText editTextExplanation, editTextCampName;
     private TextView textMapButton,textAddress,textSelectPhotoButton;
@@ -113,6 +113,8 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
         walk.setOnClickListener(this);
         wifi=findViewById(R.id.wifi);
         wifi.setOnClickListener(this);
+        shop=findViewById(R.id.shop);
+        shop.setOnClickListener(this);
 
 
         btnSave = findViewById(R.id.btnSave);
@@ -220,6 +222,13 @@ public class CampCreateActivity extends AppCompatActivity implements View.OnClic
                     park.setSelected(false);
                 }else{
                     park.setSelected(true);
+                }
+                break;
+            case  R.id.shop:
+                if(shop.isSelected()){
+                    shop.setSelected(false);
+                }else{
+                    shop.setSelected(true);
                 }
                 break;
             case R.id.btnSave:

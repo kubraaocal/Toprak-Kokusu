@@ -52,6 +52,11 @@ public class MediaRecyclerAdapter extends RecyclerView.Adapter<MediaRecyclerAdap
         return uriArrayList.size();
     }
 
+    public void clearRecycler(){
+        uriArrayList.clear();
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         public ViewHolder(@NonNull View itemView) {

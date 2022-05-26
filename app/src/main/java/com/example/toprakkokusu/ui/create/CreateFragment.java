@@ -1,10 +1,12 @@
 package com.example.toprakkokusu.ui.create;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,7 +72,7 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
 
     private static final int Read_Permission=101;
 
-    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk;
+    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk,shop;
     private Button btnSave;
     private EditText editTextExplanation, editTextCampName;
     private TextView textMapButton,textAddress,textSelectPhotoButton;
@@ -135,6 +137,8 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
         walk.setOnClickListener(this);
         wifi=binding.wifi;
         wifi.setOnClickListener(this);
+        shop=binding.shop;
+        shop.setOnClickListener(this);
 
 
         btnSave = binding.btnSave;
@@ -163,6 +167,7 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
         super.onStart();
         if(addressModel.getData()!=null){
             Log.e("LOG","adres: "+addressModel.getData());
+            textAddress.setVisibility(View.VISIBLE);
             textAddress.setText(addressModel.getData());
         } else if (addressModel.getData() == null)
         {
@@ -171,6 +176,7 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -249,6 +255,15 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
                     park.setSelected(false);
                 }else{
                     park.setSelected(true);
+                }
+                break;
+            case  R.id.shop:
+                if(shop.isSelected()){
+                    shop.setSelected(false);
+                    //binding.shopText.setTextColor(R.color.purple_500);
+                    //text renk değiştirme
+                }else{
+                    shop.setSelected(true);
                 }
                 break;
             case R.id.btnSave:
@@ -372,6 +387,26 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isComplete()){
                     Toast.makeText(getContext(),"Kamp yeri kayıt edildi",Toast.LENGTH_LONG).show();
+                    map.clear();
+                    uris.clear();
+                    editTextCampName.getText().clear();
+                    editTextExplanation.getText().clear();
+                    recyclerAdapter.clearRecycler();
+                    recyclerViewMedia.setVisibility(View.GONE);
+                    paid.setSelected(false);
+                    park.setSelected(false);
+                    shop.setSelected(false);
+                    walk.setSelected(false);
+                    wc.setSelected(false);
+                    wifi.setSelected(false);
+                    pet.setSelected(false);
+                    drink.setSelected(false);
+                    transport.setSelected(false);
+                    beach.setSelected(false);
+                    facility.setSelected(false);
+                    fire.setSelected(false);
+                    textAddress.setVisibility(View.GONE);
+
                 }
                 else{
                     Toast.makeText(getContext(),"Kamp yeri kayıt edilemedi",Toast.LENGTH_LONG).show();
