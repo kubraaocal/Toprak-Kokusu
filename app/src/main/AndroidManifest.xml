@@ -16,21 +16,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToprakKokusu">
+        <activity
+            android:name=".ui.activity.CreateActivityActivity"
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
 
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
             android:name=".CampDetailActivity"
             android:exported="false" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".CampCreateActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MapFragment"
             android:exported="false" />

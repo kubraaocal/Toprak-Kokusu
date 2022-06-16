@@ -70,6 +70,9 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.264" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_create.xml" value="0.2865448504983389" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_camp_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_card.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_creacte_activity.xml" value="0.2" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/activity_register.xml" value="0.2" />
@@ -83,6 +86,7 @@
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_map.xml" value="0.2" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/fragment_notifications.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/home_card.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/progress_background.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/layout/slider_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kubra/AndroidStudioProjects/ToprakKokusu/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />

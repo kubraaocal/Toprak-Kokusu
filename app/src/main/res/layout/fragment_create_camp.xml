@@ -399,9 +399,7 @@
                     android:drawablePadding="2dp"
                     android:text="Lokasyon Ekle"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textAddress"
@@ -410,7 +408,7 @@
                     android:layout_marginStart="28dp"
                     android:text="Adres"
                     android:visibility="gone"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/mapFragmentOpen" />
             </androidx.constraintlayout.widget.ConstraintLayout>

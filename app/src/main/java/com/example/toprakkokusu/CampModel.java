@@ -3,33 +3,14 @@ package com.example.toprakkokusu;
 import java.util.ArrayList;
 
 public class CampModel {
-    private String campName, explanation, location,comment,latitude,longitude,photo,userId;
+    private String id,image,campName, explanation, location,comment,latitude,longitude,photo,userId;
     private Boolean wc,paid,transport,facility,park,water,wildAnimal,sea,fire,network,trekking;
 
-    public CampModel(String campName, String explanation, String location, String comment,
-                     Boolean wc, Boolean paid, Boolean transport, Boolean facility, Boolean park,
-                     Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking,String photo) {
-        this.campName = campName;
-        this.explanation = explanation;
-        this.location = location;
-        this.comment = comment;
-        this.wc = wc;
-        this.paid = paid;
-        this.transport = transport;
-        this.facility = facility;
-        this.park = park;
-        this.water = water;
-        this.wildAnimal = wildAnimal;
-        this.sea = sea;
-        this.fire = fire;
-        this.network = network;
-        this.trekking = trekking;
-        this.photo=photo;
-    }
-
-    public CampModel(String campName, String explanation, String location, String latitude,
+    public CampModel(String id,String image,String campName, String explanation, String location, String latitude,
                      String longitude, Boolean wc, Boolean paid, Boolean transport, Boolean facility,
                      Boolean park, Boolean water, Boolean wildAnimal, Boolean sea, Boolean fire, Boolean network, Boolean trekking,String photo,String userId) {
+        this.image=image;
+        this.id=id;
         this.campName = campName;
         this.explanation = explanation;
         this.location = location;
@@ -51,6 +32,22 @@ public class CampModel {
     }
 
     public CampModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCampName() {

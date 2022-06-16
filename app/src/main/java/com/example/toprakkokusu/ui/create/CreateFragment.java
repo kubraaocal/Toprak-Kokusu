@@ -58,17 +58,14 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
 
     private DatabaseReference cDbRef,imageDbRef;
     private MediaRecyclerAdapter recyclerAdapter;
-    ArrayList<Uri> uris=new ArrayList<>();
+    private ArrayList<Uri> uris=new ArrayList<>();
 
     private FirebaseAuth mAuth;
 
+    private StorageReference imageRef;
 
-    StorageReference imageRef;
-
-    int j=0;
-    Map<String,String> map=new HashMap<>();
-
-
+    String url;
+    private Map<String,String> map=new HashMap<>();
 
     private static final int Read_Permission=101;
 
@@ -81,8 +78,8 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
 
     private FragmentCreateCampBinding binding;
 
-    RelativeLayout relativeLayout;
-    ProgressBar progressBar;
+    private RelativeLayout relativeLayout;
+    private ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -324,7 +321,7 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
                 taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uriUrl) {
-                        String url = String.valueOf(uriUrl);
+                        url = String.valueOf(uriUrl);
                         map.put("photo"+uri.getLastPathSegment(),url);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -378,10 +375,11 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
         }
 
         String uploadImageId=imageDbRef.push().getKey();
-
-        CampModel campModel=new CampModel(name,explanation,location,latitude,longitude,isWc,isPaid,isTransport,isFacility,
-                isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId,mAuth.getUid());
         String uploadId=cDbRef.push().getKey();
+
+        CampModel campModel=new CampModel(uploadId,url,name,explanation,location,latitude,longitude,isWc,isPaid,isTransport,isFacility,
+                isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId,mAuth.getUid());
+
         cDbRef.child(uploadId).setValue(campModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -406,7 +404,6 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
                     facility.setSelected(false);
                     fire.setSelected(false);
                     textAddress.setVisibility(View.GONE);
-
                 }
                 else{
                     Toast.makeText(getContext(),"Kamp yeri kayıt edilemedi",Toast.LENGTH_LONG).show();
