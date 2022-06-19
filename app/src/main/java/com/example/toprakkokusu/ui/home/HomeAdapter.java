@@ -1,7 +1,7 @@
 package com.example.toprakkokusu.ui.home;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.toprakkokusu.ui.detail.CampDetailActivity;
 import com.example.toprakkokusu.CampModel;
 import com.example.toprakkokusu.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -67,7 +64,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.e("ID","id degeri "+campModelList.get(getAdapterPosition()).getId());
+                    Log.e("ID","id degeri "+campModelList.get(getAdapterPosition()).getId()+" "+campModelList.get(getAdapterPosition()).getPhoto());
+                    int position = getAdapterPosition();
+                    Intent intent=new Intent(context,CampDetailActivity.class);
+                    intent.putExtra("campid",campModelList.get(position).getId());
+                    intent.putExtra("photoid",campModelList.get(position).getPhoto());
+                    context.startActivity(intent);
                 }
             });
         }

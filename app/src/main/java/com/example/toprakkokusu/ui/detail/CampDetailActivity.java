@@ -1,16 +1,27 @@
-package com.example.toprakkokusu;
+package com.example.toprakkokusu.ui.detail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.toprakkokusu.CampLocationMapFragment;
+import com.example.toprakkokusu.CampModel;
+import com.example.toprakkokusu.R;
+import com.example.toprakkokusu.SliderAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,15 +42,23 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
     int[] images={R.drawable.logo,R.drawable.logo};
 
     private TextView txtCampName,txtCampExplation,txtCampLocation;
-    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk,favorite;
+    private ImageButton wc, paid, transport, facility,park,drink,pet,fire,wifi,beach,walk,favorite,commentSendButton;
+    private EditText commentEditText;
+    private RecyclerView recyclerView;
 
+    private CommentAdapter commentAdapter;
+    private SliderAdapter sliderAdapter;
 
+    private List<CommentModel> commentModelList;
+
+    private String campId,photoId;
     private FirebaseAuth mAuth;
-    private DatabaseReference mCampReference,mCampPhotoReference;
+    private DatabaseReference mCampReference,mCampPhotoReference,commentCampReference;
     List listCamp=new ArrayList<>();
     ArrayList<String> photoModel=new ArrayList<>();
 
     ArrayList<CampModel> campModel = new ArrayList<>();
+
 
 
     @Override
@@ -47,11 +66,17 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camp_detail);
 
+
+
+        Log.e("ID",campId+" "+photoId);
+
         txtCampName=findViewById(R.id.txtCampName);
         txtCampExplation=findViewById(R.id.txtCampExplation);
         txtCampLocation=findViewById(R.id.txtCampLocation);
 
         txtCampLocation.setOnClickListener(this);
+
+        commentEditText=findViewById(R.id.comment_edit_text);
 
         wc = findViewById(R.id.wc);
         paid = findViewById(R.id.paid);
@@ -66,16 +91,30 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
         wifi=findViewById(R.id.wifi);
         favorite=findViewById(R.id.favorite_button);
         favorite.setOnClickListener(this);
+        commentSendButton=findViewById(R.id.comment_send_button);
+        commentSendButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mCampReference = FirebaseDatabase.getInstance().getReference().child("Camp");
         mCampPhotoReference = FirebaseDatabase.getInstance().getReference().child("Photo");
 
+        commentModelList=new ArrayList<>();
+        commentAdapter= new  CommentAdapter(commentModelList,getApplicationContext());
+
+        recyclerView=findViewById(R.id.recycler_view_comment);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(commentAdapter);
+        recyclerView.addItemDecoration(new
+                DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
 
 
         sliderView=findViewById(R.id.image_slider);
 
-        SliderAdapter sliderAdapter=new SliderAdapter(photoModel);
+        sliderAdapter=new SliderAdapter(photoModel);
 
         sliderView.setSliderAdapter(sliderAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
@@ -86,7 +125,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
         ValueEventListener campListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                campModel.add(snapshot.child("-N3-m940IkBNOC-3kUl2").getValue(CampModel.class));
+                campModel.add(snapshot.child(campId).getValue(CampModel.class));
                 setDatainTextView();
             }
 
@@ -96,12 +135,31 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
             }
         };
 
+        ValueEventListener commentListener=new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.child(campId).child("Comments").getChildren()) {
+                    CommentModel commentModel = ds.getValue(CommentModel.class);
+                    commentModelList.add(commentModel);
+                    commentAdapter.notifyDataSetChanged();
+                    Log.e("ID", "comments sayısı "+ commentModelList.size());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("TAG", "loadPost:onCancelled", error.toException());
+            }
+        };
+
+
+
         //string olarak veridiğim id değerleri tıklanan paylaşımın id sine göre olacak
         ValueEventListener photosListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("TAG",snapshot.child("-N3-m94-IqOMmerC2JCs").getValue().toString());
-                for (DataSnapshot child:snapshot.child("-N3-m94-IqOMmerC2JCs").getChildren()) {
+                Log.e("TAG",snapshot.child(photoId).getValue().toString());
+                for (DataSnapshot child:snapshot.child(photoId).getChildren()) {
                     //Log.e("Log", child.toString());
                     photoModel.add(child.getValue().toString());
                     sliderAdapter.notifyDataSetChanged();
@@ -114,7 +172,9 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
         };
 
         mCampReference.addValueEventListener(campListener);
+        mCampReference.addValueEventListener(commentListener);
         mCampPhotoReference.addValueEventListener(photosListener);
+        //mCampReference.child(campId).child("Comments").addValueEventListener(commentListener);
 
     }
 
@@ -122,6 +182,9 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
     protected void onStart() {
         super.onStart();
         photoModel.clear();
+        Intent intent=getIntent();
+        campId = intent.getStringExtra("campid");
+        photoId=intent.getStringExtra("photoid");
     }
 
     void setDatainTextView(){
@@ -169,7 +232,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.txtCampLocation:
-                Intent intent=new Intent(this,CampLocationMapFragment.class);
+                Intent intent=new Intent(this, CampLocationMapFragment.class);
                 intent.putExtra("longitude",longitude);
                 intent.putExtra("latitude",latitude);
                 startActivity(intent);
@@ -182,7 +245,18 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
                     favorite.setSelected(true);
                 }
                 break;
+            case R.id.comment_send_button:
+                String uploadcommentId=mCampReference.push().getKey();
+                CommentModel commentModel=new CommentModel(mAuth.getUid(),commentEditText.getText().toString(),"10:45");
+                mCampReference.child(campId).child("Comments").child(uploadcommentId).setValue(commentModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(),"Yorum oluşturuldu.",Toast.LENGTH_LONG).show();
+                        commentEditText.getText().clear();
 
+                    }
+                });
+                commentAdapter.clearList();
         }
     }
 }

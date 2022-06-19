@@ -32,8 +32,10 @@
             android:parentActivityName=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name=".CampDetailActivity"
-            android:exported="false" />
+            android:name=".ui.detail.CampDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

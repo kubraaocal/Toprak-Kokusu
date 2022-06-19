@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.toprakkokusu.CampModel;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment {
         campModelList=new ArrayList<>();
 
         recyclerView=binding.homeRecyclerView;
+
         homeAdapter=new HomeAdapter(campModelList,getContext());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -70,6 +72,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
+                campModelList.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     CampModel campModel = ds.getValue(CampModel.class);
                     campModelList.add(campModel);
