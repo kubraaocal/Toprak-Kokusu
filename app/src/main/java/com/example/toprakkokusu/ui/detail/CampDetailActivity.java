@@ -1,6 +1,7 @@
 package com.example.toprakkokusu.ui.detail;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,7 +54,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
 
     private String campId,photoId;
     private FirebaseAuth mAuth;
-    private DatabaseReference mCampReference,mCampPhotoReference,commentCampReference;
+    private DatabaseReference mCampReference,mCampPhotoReference,commentCampReference, mUserFavReference;
     List listCamp=new ArrayList<>();
     ArrayList<String> photoModel=new ArrayList<>();
 
@@ -96,6 +97,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
 
         mAuth = FirebaseAuth.getInstance();
         mCampReference = FirebaseDatabase.getInstance().getReference().child("Camp");
+        mUserFavReference = FirebaseDatabase.getInstance().getReference().child("Users");
         mCampPhotoReference = FirebaseDatabase.getInstance().getReference().child("Photo");
 
         commentModelList=new ArrayList<>();
@@ -152,6 +154,26 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
             }
         };
 
+        ValueEventListener favoriteListener=new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.child(mAuth.getUid()).child("Favorites").getChildren()) {
+                    Log.e("TAG",ds.getValue().toString()+" "+campId);
+                       if(ds.getValue().equals(campId)){
+                           favorite.setSelected(true);
+                       }else
+                       {
+                           Log.e("TAG","girmedi");
+                       }
+                    }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("TAG", "loadPost:onCancelled", error.toException());
+            }
+        };
+
 
 
         //string olarak veridiğim id değerleri tıklanan paylaşımın id sine göre olacak
@@ -173,6 +195,7 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
 
         mCampReference.addValueEventListener(campListener);
         mCampReference.addValueEventListener(commentListener);
+        mUserFavReference.addValueEventListener(favoriteListener);
         mCampPhotoReference.addValueEventListener(photosListener);
         //mCampReference.child(campId).child("Comments").addValueEventListener(commentListener);
 
@@ -241,8 +264,23 @@ public class CampDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.favorite_button:
                 if(favorite.isSelected()){
                     favorite.setSelected(false);
+                    mUserFavReference.child(mAuth.getUid()).child("Favorites").child(campId).removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                            ref.removeValue();
+                            Toast.makeText(getApplicationContext(),"Favorilerden çıkarıldı",Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }else{
                     favorite.setSelected(true);
+                    mUserFavReference.child(mAuth.getUid()).child("Favorites").child(campId).setValue(campId).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isComplete()){
+                                Toast.makeText(getApplicationContext(),"Favorilere Eklendi",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
                 break;
             case R.id.comment_send_button:

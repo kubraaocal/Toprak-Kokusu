@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.toprakkokusu.MapFragment;
 import com.example.toprakkokusu.databinding.FragmentActivityBinding;
-import com.example.toprakkokusu.databinding.FragmentNotificationsBinding;
 import com.example.toprakkokusu.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
