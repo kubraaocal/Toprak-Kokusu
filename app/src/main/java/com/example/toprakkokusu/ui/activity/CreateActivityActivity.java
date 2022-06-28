@@ -33,7 +33,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class CreateActivityActivity extends AppCompatActivity {
-    private DatabaseReference activityDbRef;
+    private DatabaseReference activityDbRef,userDbRef;
     private FirebaseAuth mAuth;
     private StorageReference imageRef;
 
@@ -59,6 +59,7 @@ public class CreateActivityActivity extends AppCompatActivity {
 
         activityDbRef = FirebaseDatabase.getInstance().getReference().child("Activity");
         imageRef = FirebaseStorage.getInstance().getReference().child("activityImages/");
+        userDbRef=FirebaseDatabase.getInstance().getReference().child("Users");
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -141,8 +142,15 @@ public class CreateActivityActivity extends AppCompatActivity {
             return;
         }
 
-        ActivityModel activityModel=new ActivityModel(url,title,text);
         String uploadId=activityDbRef.push().getKey();
+        userDbRef.child(mAuth.getUid()).child("MyActivity").child(uploadId).setValue(uploadId).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getApplicationContext(),"kullanıcı ekledi",Toast.LENGTH_LONG).show();
+            }
+        });
+        ActivityModel activityModel=new ActivityModel(url,title,text,mAuth.getUid());
+
         activityDbRef.child(uploadId).setValue(activityModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

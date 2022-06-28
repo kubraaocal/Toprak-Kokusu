@@ -48,6 +48,7 @@ public class ActivityFragment extends Fragment implements View.OnClickListener {
         View root = binding.getRoot();
 
         activityDbRef = FirebaseDatabase.getInstance().getReference().child("Activity");
+
         activityModelList=new ArrayList<>();
 
         addActivityButton=binding.imageAddActivityButton;
@@ -67,6 +68,7 @@ public class ActivityFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
+                activityModelList.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ActivityModel activityModel = ds.getValue(ActivityModel.class);
                     activityModelList.add(activityModel);

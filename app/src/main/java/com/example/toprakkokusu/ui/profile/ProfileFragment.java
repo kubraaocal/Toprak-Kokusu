@@ -11,13 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.toprakkokusu.CampModel;
 import com.example.toprakkokusu.UserModel;
 import com.example.toprakkokusu.databinding.FragmentProfileBinding;
+import com.example.toprakkokusu.ui.home.HomeAdapter;
+import com.example.toprakkokusu.ui.profile.tabfragment.ViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +43,7 @@ public class ProfileFragment extends Fragment  {
     private TextView userNameSurname;
     private ImageView userPhoto;
     private RecyclerView recyclerView;
-    private FavoriteAdapter favoriteAdapter;
+    private HomeAdapter favoriteAdapter;
 
     private DatabaseReference userDbRef,campDbRef;
 
@@ -52,15 +55,31 @@ public class ProfileFragment extends Fragment  {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //binding = ActivityMain2Binding.inflate(getLayoutInflater());
+        //setContentView(binding.getRoot());
+
         userModelList=new ArrayList<>();
-        favoriteCampIdList=new ArrayList<>();
-        campModelList=new ArrayList<>();
 
         userNameSurname=binding.userNameSurnameTextView;
         userPhoto=binding.userProfileImageView;
-        recyclerView=binding.favoriteCampRecyclerView;
+        //recyclerView=binding.favoriteCampRecyclerView;
 
-        favoriteAdapter=new FavoriteAdapter(campModelList,getContext());
+        TabLayout tabLayout=binding.tabLayout;
+        ViewPager2 viewPager2=binding.viewPager;
+
+        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(this);
+        viewPager2.setAdapter(viewPagerAdapter);
+
+        String [] tabTtiles={"Favorilerim","Kamp Yerlerim","Etkinliklerim"};
+
+
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(tabTtiles[position]);
+            }
+        }).attach();
+
 
         mAuth = FirebaseAuth.getInstance();
         userDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -69,16 +88,6 @@ public class ProfileFragment extends Fragment  {
         //final TextView textView = binding.textNotifications;
         //notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
-
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(favoriteAdapter);
-        recyclerView.addItemDecoration(new
-                DividerItemDecoration(getActivity(),
-                DividerItemDecoration.VERTICAL));
 
         ValueEventListener userListener=new ValueEventListener() {
             @Override
@@ -93,48 +102,7 @@ public class ProfileFragment extends Fragment  {
             }
         };
 
-        ValueEventListener favoriteIdListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                favoriteCampIdList.clear();
-                for (DataSnapshot ds : dataSnapshot.child(mAuth.getUid()).child("Favorites").getChildren()) {
-                    favoriteCampIdList.add(ds.getValue().toString());
-                    Log.e("TAG",favoriteCampIdList.size()+" "+favoriteCampIdList.get(0));
-                }
-                // ..
-                ValueEventListener favoriteCampListener=new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        campModelList.clear();
-                        for(int i=0;i<favoriteCampIdList.size();i++){
-                            Log.e("TAG",snapshot.child(favoriteCampIdList.get(i)).getValue().toString());
-                            campModelList.add(snapshot.child(favoriteCampIdList.get(i)).getValue(CampModel.class));
-                            favoriteAdapter.notifyDataSetChanged();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Log.w("TAG", "loadPost:onCancelled", error.toException());
-                    }
-                };
-
-                campDbRef.addValueEventListener(favoriteCampListener);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
-            }
-        };
-
-
-
-
         userDbRef.addValueEventListener(userListener);
-        userDbRef.addValueEventListener(favoriteIdListener);
-
-
 
         return root;
     }
@@ -149,10 +117,5 @@ public class ProfileFragment extends Fragment  {
         super.onDestroyView();
         binding = null;
     }
-
-
-
-
-
 
 }

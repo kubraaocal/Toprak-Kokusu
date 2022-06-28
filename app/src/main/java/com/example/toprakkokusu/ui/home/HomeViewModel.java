@@ -12,7 +12,7 @@ public class HomeViewModel extends ViewModel {
     private ActivityModel activityModel;
 
     public HomeViewModel() {
-        activityModel=new ActivityModel("asdasd","sdasdas","asdsadas");
+        activityModel=new ActivityModel("asdasd","sdasdas","asdsadas","dd");
         mText = new MutableLiveData<>();
         mText.setValue(activityModel.getText());
     }

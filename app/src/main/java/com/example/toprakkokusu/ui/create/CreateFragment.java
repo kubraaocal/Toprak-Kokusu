@@ -56,7 +56,7 @@ import java.util.Map;
 public class CreateFragment extends Fragment implements View.OnClickListener {
 
 
-    private DatabaseReference cDbRef,imageDbRef;
+    private DatabaseReference cDbRef,imageDbRef,userDbRef;
     private MediaRecyclerAdapter recyclerAdapter;
     private ArrayList<Uri> uris=new ArrayList<>();
 
@@ -96,6 +96,7 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
 
         cDbRef = FirebaseDatabase.getInstance().getReference().child("Camp");
         imageDbRef=FirebaseDatabase.getInstance().getReference().child("Photo");
+        userDbRef=FirebaseDatabase.getInstance().getReference().child("Users");
 
         imageRef = FirebaseStorage.getInstance().getReference().child("images/");
 
@@ -376,6 +377,13 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
 
         String uploadImageId=imageDbRef.push().getKey();
         String uploadId=cDbRef.push().getKey();
+
+        userDbRef.child(mAuth.getUid()).child("MyCamp").child(uploadId).setValue(uploadId).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getContext(),"kullanıcı ekledi",Toast.LENGTH_LONG).show();
+            }
+        });
 
         CampModel campModel=new CampModel(uploadId,url,name,explanation,location,latitude,longitude,isWc,isPaid,isTransport,isFacility,
                 isPark,isDrink,isPet,isBeach,isFire,isWifi,isWalk,uploadImageId,mAuth.getUid());
