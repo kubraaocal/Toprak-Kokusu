@@ -398,6 +398,8 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
                     editTextCampName.getText().clear();
                     editTextExplanation.getText().clear();
                     recyclerAdapter.clearRecycler();
+                    textAddress.setText("");
+                    textAddress.setVisibility(View.GONE);
                     recyclerViewMedia.setVisibility(View.GONE);
                     paid.setSelected(false);
                     park.setSelected(false);
@@ -411,7 +413,8 @@ public class CreateFragment extends Fragment implements View.OnClickListener {
                     beach.setSelected(false);
                     facility.setSelected(false);
                     fire.setSelected(false);
-                    textAddress.setVisibility(View.GONE);
+
+
                 }
                 else{
                     Toast.makeText(getContext(),"Kamp yeri kayıt edilemedi",Toast.LENGTH_LONG).show();

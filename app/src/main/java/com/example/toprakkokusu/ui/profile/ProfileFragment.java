@@ -1,10 +1,12 @@
 package com.example.toprakkokusu.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.toprakkokusu.CampModel;
+import com.example.toprakkokusu.LoginActivity;
 import com.example.toprakkokusu.UserModel;
 import com.example.toprakkokusu.databinding.FragmentProfileBinding;
+import com.example.toprakkokusu.ui.detail.CampDetailActivity;
 import com.example.toprakkokusu.ui.home.HomeAdapter;
 import com.example.toprakkokusu.ui.profile.tabfragment.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -36,14 +40,11 @@ public class ProfileFragment extends Fragment  {
 
     private FragmentProfileBinding binding;
     private List<UserModel> userModelList;
-    private List<String> favoriteCampIdList;
-    private List<CampModel> campModelList;
     private FirebaseAuth mAuth;
 
     private TextView userNameSurname;
     private ImageView userPhoto;
-    private RecyclerView recyclerView;
-    private HomeAdapter favoriteAdapter;
+    private ImageButton buttonLogOut;
 
     private DatabaseReference userDbRef,campDbRef;
 
@@ -55,6 +56,8 @@ public class ProfileFragment extends Fragment  {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        mAuth=FirebaseAuth.getInstance();
+
         //binding = ActivityMain2Binding.inflate(getLayoutInflater());
         //setContentView(binding.getRoot());
 
@@ -62,6 +65,19 @@ public class ProfileFragment extends Fragment  {
 
         userNameSurname=binding.userNameSurnameTextView;
         userPhoto=binding.userProfileImageView;
+        buttonLogOut=binding.buttonLogOut;
+
+        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("TAG","tıklandı");
+                mAuth.signOut();
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
         //recyclerView=binding.favoriteCampRecyclerView;
 
         TabLayout tabLayout=binding.tabLayout;
@@ -110,6 +126,7 @@ public class ProfileFragment extends Fragment  {
     private void setDatainTextView() {
         userNameSurname.setText(userModelList.get(0).getNameSurname());
         Picasso.get().load(userModelList.get(0).getPhoto()).noFade().into(userPhoto);
+        Log.e("PHT",userModelList.get(0).getPhoto());
     }
 
     @Override
@@ -118,4 +135,9 @@ public class ProfileFragment extends Fragment  {
         binding = null;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        userModelList.clear();
+    }
 }

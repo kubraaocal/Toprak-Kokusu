@@ -81,23 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPassForgot" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonGoogle"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/button_border"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/googleg_standard_color_18"
-        android:text="Google ile devam et"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+
 
 
     <TextView
@@ -109,7 +93,7 @@
         android:text="Hesabınız yok mu? Üye Olun"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
     <RelativeLayout
         android:id="@+id/relative_layout"

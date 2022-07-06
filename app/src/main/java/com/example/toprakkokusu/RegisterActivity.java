@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String nameSurname=editTextNameSurname.getText().toString().trim();
         String email=editTextEmail.getText().toString().trim();
         String pass=editTextPass.getText().toString().trim();
-        String photo = "https://firebasestorage.googleapis.com/v0/b/toprakkokusu-c3451.appspot.com/o/profile%2Fblank-profile-picture-973460_640.png?alt=media&token=78ad1609-52fe-4231-adae-09cff0b3094b";
+            String photo = "https://firebasestorage.googleapis.com/v0/b/toprakkokusu-c3451.appspot.com/o/profile%2Fuser.png?alt=media&token=e0309447-660d-40b3-8346-ab8028664c1e";
         //trim metodu, metnin sonunda ve başında yer alan boşlukları yok ederken kelime aralarındaki boşluklara dokunmaz
 
         if(nameSurname.isEmpty()){

@@ -58,8 +58,9 @@ public class HomeFragment extends Fragment {
     private List<CampModel> suggestedList=new ArrayList<>();
     private JSONArray oneri=new JSONArray();
     private SearchView textSearch;
+    private List<String> suggestedIdList=new ArrayList<>();
 
-    private DatabaseReference homeDbRef;
+    private DatabaseReference homeDbRef,userDbRef;
 
     private FragmentHomeBinding binding;
 
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment {
         /*final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);*/
         homeDbRef = FirebaseDatabase.getInstance().getReference().child("Camp");
+        userDbRef=FirebaseDatabase.getInstance().getReference().child("MyCamp");
 
         textSearch=binding.searchView;
         recyclerView=binding.homeRecyclerView;
@@ -107,23 +109,30 @@ public class HomeFragment extends Fragment {
             }
         });
 
-            Log.e("SUG","1. burası");
+        Log.e("SUG","1. burası");
         apiIstek();
+
+
+        Log.e("USER","user my camp "+userDbRef);
         ValueEventListener suggestedListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
                 suggestedList.clear();
+                suggestedIdList.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     //Log.e("TAG","ds değeri "+ds.getValue()+" ");
                     for(DataSnapshot a:ds.getChildren()){
                         //Log.e("TAG","ds değeri "+a+" ");
                         try {
                             for(int i=0;i<oneri.length();i++){
-                                if(a.getKey().equals(oneri.get(i).toString()) && a.getValue().equals(true)){
+                                if(a.getKey().equals(oneri.get(i).toString()) && a.getValue().equals(true) ){
                                     CampModel campModel = ds.getValue(CampModel.class);
-                                    suggestedList.add(campModel);
-                                    suggestedAdapter.notifyDataSetChanged();
+                                    if(!suggestedIdList.contains(campModel.getId())){
+                                        suggestedIdList.add(campModel.getId());
+                                        suggestedList.add(campModel);
+                                        suggestedAdapter.notifyDataSetChanged();
+                                    }
                                 }
                             }
                         } catch (JSONException e) {
@@ -162,7 +171,6 @@ public class HomeFragment extends Fragment {
             }
 
         };
-
 
         homeDbRef.addValueEventListener(homeListener);
         homeDbRef.addValueEventListener(suggestedListener);

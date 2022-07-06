@@ -108,4 +108,5 @@ public class ActivityFragment extends Fragment {
 
         return view;
     }
+
 }

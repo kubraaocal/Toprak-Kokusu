@@ -33,7 +33,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setElevation(0);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 
         progressBar=findViewById(R.id.progressBar);
         userEmail=findViewById(R.id.editTextUserEmail);

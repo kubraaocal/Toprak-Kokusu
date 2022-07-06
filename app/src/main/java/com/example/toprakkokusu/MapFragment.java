@@ -112,7 +112,6 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
             public void onMapClick(LatLng latLng) {
                 MarkerOptions markerOptions=new MarkerOptions().position(latLng).title(addressModel.getData());
                 coordinateToAddress(latLng);
-                googleMap.clear();
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                 googleMap.addMarker(markerOptions);
             }
@@ -122,6 +121,7 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
     private void coordinateToAddress(LatLng latLng) {
         try {
             addresses=geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
+            //addresses=geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
             String address = addresses.get(0).getAddressLine(0);
             String city = addresses.get(0).getLocality();
             String state = addresses.get(0).getAdminArea();
@@ -135,8 +135,6 @@ public class MapFragment extends FragmentActivity implements View.OnClickListene
             e.printStackTrace();
         }
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

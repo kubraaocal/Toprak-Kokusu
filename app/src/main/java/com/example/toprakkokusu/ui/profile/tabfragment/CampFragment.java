@@ -85,7 +85,7 @@ public class CampFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         campModelList.clear();
                         for(int i=0;i<campIdList.size();i++){
-                            Log.e("TAG",snapshot.child(campIdList.get(i)).getValue().toString());
+                            //Log.e("TAG",snapshot.child(campIdList.get(i)).getValue().toString());
                             campModelList.add(snapshot.child(campIdList.get(i)).getValue(CampModel.class));
                             favoriteAdapter.notifyDataSetChanged();
                         }
@@ -108,4 +108,5 @@ public class CampFragment extends Fragment {
 
         return view;
     }
+
 }

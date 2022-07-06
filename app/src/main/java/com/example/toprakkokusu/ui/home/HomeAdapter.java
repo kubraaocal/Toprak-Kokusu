@@ -45,10 +45,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.address.setText(campModelList.get(position).getLocation());
-        holder.title.setText(campModelList.get(position).getCampName());
-        //Uri imageUri = Uri.parse(activityModelList.get(position).getPhoto());
-        Picasso.get().load(campModelList.get(position).getImage()).noFade().into(holder.photo);
+        try {
+            holder.address.setText(campModelList.get(position).getLocation());
+            holder.title.setText(campModelList.get(position).getCampName());
+            //Uri imageUri = Uri.parse(activityModelList.get(position).getPhoto());
+            Picasso.get().load(campModelList.get(position).getImage()).noFade().into(holder.photo);
+        }catch (Exception e){
+            Log.e("TAG","Yuklenmedi");
+        }
+
     }
 
     @Override
