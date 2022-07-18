@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
 
     private EditText editTextEmail,editTextPass;
+    private TextView textForgotPass;
     private Button buttonLogin;
     private ProgressBar progressBar;
     private RelativeLayout relativeLayout;
@@ -44,8 +46,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar=findViewById(R.id.progressBar);
 
         buttonLogin = findViewById(R.id.buttonLogin);
-
         buttonLogin.setOnClickListener(this);
+        textForgotPass=findViewById(R.id.textPassForgot);
+        textForgotPass.setOnClickListener(this);
 
         findViewById(R.id.textSingIn).setOnClickListener(this);
     }
@@ -55,12 +58,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.textSingIn:
                 startActivity(new Intent(this, RegisterActivity.class));
-                Log.e("Kayıt buton", "onClick: " );
                 break;
             case R.id.buttonLogin:
                 loginUser();
                 break;
-
+            case R.id.textPassForgot:
+                startActivity(new Intent(this, ForgotPasswordActivity.class));
+                break;
         }
     }
 
@@ -96,7 +100,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    progressBar.setVisibility(View.GONE);
+                    startActivity(new Intent(LoginActivity.this,BottomNavigationActivity.class));
                     finish();
                 }else{
                     Toast.makeText(LoginActivity.this,"Giriş yapılamadı",Toast.LENGTH_LONG).show();

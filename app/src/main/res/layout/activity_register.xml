@@ -13,7 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextNameSurname"
@@ -83,40 +84,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonFacebook"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:textSize="15dp"
-        android:background="@drawable/button_border"
-        android:drawableLeft="@drawable/ic_launcher_wc_true"
-        android:text="Facebook ile devam et"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonGoogle"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/button_border"
-        android:drawableLeft="@drawable/ic_launcher_wc_true"
-        android:text="Google ile devam et"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFacebook" />
-
 
     <TextView
         android:id="@+id/textLogin"
@@ -127,7 +94,7 @@
         android:text="Kayıtlı iseniz Giriş Yapın"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
 
     <RelativeLayout
         android:id="@+id/relative_layout"
